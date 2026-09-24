@@ -1,0 +1,101 @@
+@import './fonts.css';
+@import './tailwind.css';
+@import './theme.css';
+
+:root {
+  color-scheme: light;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  color: #111827;
+  background: #f4f6f8;
+}
+
+::selection {
+  background: rgba(0, 94, 250, 0.16);
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #eef2f6;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border: 2px solid #eef2f6;
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+.rounded-\[22px\] {
+  border-radius: 12px !important;
+}
+
+.rounded-\[24px\] {
+  border-radius: 14px !important;
+}
+
+.rounded-\[28px\] {
+  border-radius: 16px !important;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+*:focus-visible {
+  outline: 3px solid rgba(0, 94, 250, 0.35);
+  outline-offset: 2px;
+}
+
+button,
+input,
+textarea,
+select,
+a {
+  transition: box-shadow 120ms ease, border-color 120ms ease, background-color 120ms ease, color 120ms ease;
+}
+
+button:disabled,
+input:disabled,
+textarea:disabled,
+select:disabled {
+  cursor: not-allowed;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

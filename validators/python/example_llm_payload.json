@@ -1,0 +1,85 @@
+{
+  "course": {
+    "name": "Extraction factures fournisseurs",
+    "description": "Le robot doit lire un lot de factures PDF, extraire les champs attendus et produire un fichier de sortie conforme.",
+    "difficulty": "Intermediaire",
+    "workspaceName": "Espace RPA",
+    "tags": ["RPA", "Invoices", "UiPath"],
+    "rpaConfig": {
+      "techStack": ["UiPath", "REFramework", "Excel"],
+      "outputFileType": "CSV",
+      "outputColumns": [
+        { "name": "invoice_number", "type": "string", "required": true, "sampleValue": "INV-2026-001" },
+        { "name": "supplier_name", "type": "string", "required": true, "sampleValue": "ACME" },
+        { "name": "amount", "type": "float", "required": true, "sampleValue": "1250.40" },
+        { "name": "invoice_date", "type": "date", "required": true, "sampleValue": "2026-04-15" }
+      ],
+      "sampleRows": [
+        {
+          "input": "Facture PDF simple avec numero, fournisseur, montant et date",
+          "expectedOutput": "invoice_number,supplier_name,amount,invoice_date\nINV-2026-001,ACME,1250.40,2026-04-15"
+        }
+      ],
+      "validationRules": [
+        {
+          "key": "brief_compliance",
+          "label": "Respect strict du brief",
+          "description": "Le rendu doit suivre exactement les consignes du cas.",
+          "category": "Consignes",
+          "enabled": true,
+          "type": "Brief compliance",
+          "value": "Le correcteur penalise toute divergence avec le brief et les livrables.",
+          "severity": "blocking"
+        },
+        {
+          "key": "output_readiness",
+          "label": "Qualite du livrable final",
+          "description": "Le fichier final doit etre directement exploitable par le metier.",
+          "category": "Output",
+          "enabled": true,
+          "type": "Output readiness",
+          "value": "Verifier la conformite du CSV et l'absence de colonnes parasites.",
+          "severity": "blocking"
+        }
+      ]
+    }
+  },
+  "learner": {
+    "name": "Jean Dupont",
+    "role": "learner"
+  },
+  "submission": {
+    "summary": "Le robot lit les PDF, extrait les donnees principales et construit un CSV final.",
+    "declaredDeliverables": ["Main.xaml", "Framework/Process.xaml", "output/result.csv"],
+    "attachedFiles": ["Main.xaml", "Data/Config.xlsx", "output/result.csv"],
+    "contentExcerpt": "Main.xaml utilise REFramework. Le CSV final contient invoice_number, supplier_name, amount, invoice_date. Les erreurs sont journalisees avec Log Message."
+  },
+  "pythonValidation": {
+    "passed": false,
+    "blocking_failed": 1,
+    "warning_failed": 1,
+    "results": [
+      {
+        "rule": "output_schema",
+        "script": "output_schema.py",
+        "passed": false,
+        "severity": "blocking",
+        "message": "Le fichier de sortie ne respecte pas totalement le schema attendu.",
+        "details": {
+          "missing_columns": ["invoice_date"],
+          "type_mismatches": []
+        }
+      },
+      {
+        "rule": "structured_logs",
+        "script": "structured_logs.py",
+        "passed": false,
+        "severity": "warning",
+        "message": "Les logs sont absents ou trop pauvres pour un suivi exploitable.",
+        "details": {
+          "log_count": 1
+        }
+      }
+    ]
+  }
+}

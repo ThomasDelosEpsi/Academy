@@ -1,0 +1,22 @@
+{
+  "packagePath": "./samples/uipath_project",
+  "outputFilePath": "./samples/output.csv",
+  "rpaConfig": {
+    "outputFileType": "CSV",
+    "outputColumns": [
+      { "name": "reference", "type": "string", "required": true, "sampleValue": "CTR-2026-001" },
+      { "name": "status", "type": "string", "required": true, "sampleValue": "processed" },
+      { "name": "amount", "type": "float", "required": false, "sampleValue": "1250.50" }
+    ],
+    "pythonRules": [
+      { "key": "max_activities", "enabled": true, "severity": "blocking", "scriptName": "max_activities.py", "param": "50" },
+      { "key": "reframework_required", "enabled": true, "severity": "blocking", "scriptName": "reframework_required.py" },
+      { "key": "no_hardcoded_credentials", "enabled": true, "severity": "blocking", "scriptName": "no_hardcoded_credentials.py" },
+      { "key": "structured_logs", "enabled": true, "severity": "warning", "scriptName": "structured_logs.py" },
+      { "key": "invoke_workflow_required", "enabled": true, "severity": "warning", "scriptName": "invoke_workflow_required.py" },
+      { "key": "exception_handling", "enabled": true, "severity": "blocking", "scriptName": "exception_handling.py" },
+      { "key": "selector_quality", "enabled": true, "severity": "warning", "scriptName": "selector_quality.py" },
+      { "key": "output_schema", "enabled": true, "severity": "blocking", "scriptName": "output_schema.py" }
+    ]
+  }
+}
